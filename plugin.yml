@@ -1,6 +1,6 @@
 name: ScheduledAnnouncer2
 main: org.whiskcraft.ScheduledAnnouncer.AnnouncerPlugin
-version: 1.0 - For 1.2.5
+version: 1.1 - For 1.2.5
 description: Automatically Announce tips and news!  Make announcements!
 website: http://github.com/whisk1/ScheduledAnnouncer.git
 authors:
