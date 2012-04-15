@@ -10,9 +10,11 @@ commands:
   announce:
     description: Managing Announcements
     usage: /<command> help - Displays the help for Announcer
+    aliases: an
   announcer:
     description: Alias for /announce
     usage: /<command> help - Displays the help for Announcer
+    aliases: an
 
 permissions:
     announcer.*:
