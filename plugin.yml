@@ -1,8 +1,8 @@
 name: ScheduledAnnouncer2
 main: org.whiskcraft.ScheduledAnnouncer.AnnouncerPlugin
-version: 1.1 - For 1.2.5
-description: Automatically Announce tips and news!  Make announcements!
-website: http://github.com/whisk1/ScheduledAnnouncer.git
+version: 1.0 - For 1.2.5
+description: Automatically Announce tips and news!
+website: http://github.com/whisk1/ScheduledAnnouncer
 authors:
  - 'whisk1'
 
@@ -10,22 +10,26 @@ commands:
   announce:
     description: Managing Announcements
     usage: /<command> help - Displays the help for Announcer
-    aliases: an
+    permission: announcer.command
   announcer:
     description: Alias for /announce
     usage: /<command> help - Displays the help for Announcer
-    aliases: an
+    permission: announcer.command
 
 permissions:
     announcer.*:
-        description: Gives access to all commands for managing announcments
+        description: Gives access to all commands for managing announcements
         children:
+            announcer.command: true
             announcer.receiver: true
             announcer.add: true
             announcer.delete: true
             announcer.broadcast: true
             announcer.moderate: true
             announcer.admin: true
+    announcer.command:
+        description: Allows you to issue command
+        default: true
     announcer.receiver:
         description: Allows you to receive notifications
         default: true
