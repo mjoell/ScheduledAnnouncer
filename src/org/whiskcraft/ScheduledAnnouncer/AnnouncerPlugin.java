@@ -14,12 +14,15 @@
 
 package org.whiskcraft.ScheduledAnnouncer;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Logger;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import java.io.File;
-import java.util.List;
-import java.util.logging.Logger;
+
 
 /**
  * Scheduled AnnouncerPlugin for Bukkit.
@@ -27,6 +30,13 @@ import java.util.logging.Logger;
  * @author MiHo
  */
 public class AnnouncerPlugin extends JavaPlugin {
+    AnnouncerPlugin plugin;
+	
+	void Metrics(AnnouncerPlugin p){
+		plugin = p;
+	}
+	
+
     /**
      * Messages to be announced.
      */
@@ -76,7 +86,15 @@ public class AnnouncerPlugin extends JavaPlugin {
      * Called when enabling the plugin.
      */
     public void onEnable() {
+
         logger = getServer().getLogger();
+        
+        try {;
+			Metrics metrics = new Metrics(plugin);
+            metrics.start();
+        } catch (IOException e) {
+            // Failed to submit the stats :-(
+        }
 
         // Create default config if not exist yet.
         if (!new File(getDataFolder(), "config.yml").exists()) {
