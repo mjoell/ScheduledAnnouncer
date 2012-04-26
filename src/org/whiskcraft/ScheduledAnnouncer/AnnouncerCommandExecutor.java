@@ -178,6 +178,11 @@ class AnnouncerCommandExecutor implements CommandExecutor {
                 plugin.addAnnouncement(messageToAnnounce.toString());
 
                 sender.sendMessage(ChatColor.GREEN + "Added announcement successfully!");
+                
+            if (args.length > 100) {
+            	sender.sendMessage(ChatColor.RED + "This message is too long!");
+            	
+            }
             } else {
                 sender.sendMessage(ChatColor.RED + "You need to pass a message to announce!");
             }
