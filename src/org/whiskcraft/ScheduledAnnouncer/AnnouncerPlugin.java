@@ -15,11 +15,9 @@
 package org.whiskcraft.ScheduledAnnouncer;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -84,14 +82,6 @@ public class AnnouncerPlugin extends JavaPlugin {
     public void onEnable() {
 
         logger = getServer().getLogger();
-        Plugin plugin = null;
-        
-        try {
-			Metrics metrics = new Metrics(plugin);
-            metrics.start();
-        } catch (IOException e) {
-            // Failed to submit the stats :-(
-        }
 
         
 
