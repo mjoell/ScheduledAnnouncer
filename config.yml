@@ -26,3 +26,9 @@ announcement:
     - 'Use /announce help to get info how to config this plugin.'
     - 'You can also configure this plugin with its config.yml too!'
     
+    # Enables or disables the MOTD.
+    MOTDEnabled: false
+    
+    # Sets the MOTD if it is enabled.
+    MOTD:
+    
