@@ -55,10 +55,17 @@ public class AnnouncerPlugin extends JavaPlugin {
      * Flag if the plugin should output the announcements randomly.
      */
     protected boolean random;
+    
+    /**
+     * Flag if the MOTD should be enabled.
+     */
+    protected boolean MOTDEnabled;
+    
 
     /**
      * Thread used to announcing.
      */
+    
     private AnnouncerThread announcerThread;
 
     /**
@@ -277,5 +284,14 @@ public class AnnouncerPlugin extends JavaPlugin {
     public void setRandom(boolean random) {
         this.random = random;
         saveConfiguration();
+    }
+    
+    public boolean isMOTDEnabled() {
+    	return enabled;
+    }
+    
+    public void setMOTDEnabled(boolean MOTDEnabled) {
+    	this.MOTDEnabled = MOTDEnabled;
+    	saveConfiguration();
     }
 }
