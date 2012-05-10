@@ -3,6 +3,12 @@
 # =====================================
 #
 # Don't use tabs in *.yml file!
+# 
+# Please note that there is a 85 (with the default prefix) character
+# limit on announcements.
+# 
+# If you mess this config up, feel free to delete this one, and let
+# the plugin create you a new one!
 #
 
 announcement:
@@ -25,10 +31,4 @@ announcement:
     - 'This is the first default announcement!'
     - 'Use /announce help to get info how to config this plugin.'
     - 'You can also configure this plugin with its config.yml too!'
-    
-    # Enables or disables the MOTD.
-    MOTDEnabled: false
-    
-    # Sets the MOTD if it is enabled.
-    MOTD:
     
