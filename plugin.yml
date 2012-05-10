@@ -15,6 +15,10 @@ commands:
     description: Alias for /announce
     usage: /<command> help - Displays the help for Announcer
     permission: announcer.command
+  an:
+    description: Alias for /announce
+    usage: /command help
+    permission: announcer.command
 
 permissions:
     announcer.*:
