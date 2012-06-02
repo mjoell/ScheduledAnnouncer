@@ -1,5 +1,5 @@
 name: ScheduledAnnouncer2
-main: org.whiskcraft.ScheduledAnnouncer.AnnouncerPlugin
+main: net.wiskr.ScheduledAnnouncer.AnnouncerPlugin
 version: 2.4 - for CB 1.2.5-R3.0
 description: Automatically Announce tips and news!
 website: http://github.com/whisk1/ScheduledAnnouncer
@@ -11,13 +11,10 @@ commands:
     description: Managing Announcements
     usage: /<command> help - Displays the help for Announcer
     permission: announcer.command
+    aliases: [an]
   announcer:
     description: Alias for /announce
     usage: /<command> help - Displays the help for Announcer
-    permission: announcer.command
-  an:
-    description: Alias for /announce
-    usage: /command help
     permission: announcer.command
 
 permissions:
