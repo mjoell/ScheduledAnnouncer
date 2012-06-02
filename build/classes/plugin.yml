@@ -1,5 +1,5 @@
 name: ScheduledAnnouncer2
-main: net.wiskr.ScheduledAnnouncer.AnnouncerPlugin
+main: org.whiskcraft.ScheduledAnnouncer.AnnouncerPlugin
 version: 2.4 - for CB 1.2.5-R3.0
 description: Automatically Announce tips and news!
 website: http://github.com/whisk1/ScheduledAnnouncer
