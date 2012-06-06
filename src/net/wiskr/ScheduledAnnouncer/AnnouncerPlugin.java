@@ -19,7 +19,7 @@ public class AnnouncerPlugin extends JavaPlugin
 {
   protected List<String> announcementMessages;
   protected String announcementPrefix;
-  protected String motdMesage;
+  protected String motdMessage;
   protected long announcementInterval;
   protected boolean enabled;
   protected boolean random;
@@ -129,6 +129,17 @@ public class AnnouncerPlugin extends JavaPlugin
     scheduler.cancelTasks(this);
     scheduler
       .scheduleSyncRepeatingTask(this, this.announcerThread, announcementInterval * 20L, announcementInterval * 20L);
+  }
+  
+  public String getMotd()
+  {
+      return this.motdMessage;
+  }
+  
+  public void setMotd()
+  {
+      this.motdMessage = motdMessage;
+      saveConfig();
   }
 
   public void addAnnouncement(String message)
