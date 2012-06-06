@@ -19,9 +19,11 @@ public class AnnouncerPlugin extends JavaPlugin
 {
   protected List<String> announcementMessages;
   protected String announcementPrefix;
+  protected String motdMesage;
   protected long announcementInterval;
   protected boolean enabled;
   protected boolean random;
+  protected boolean motd;
   private AnnouncerThread announcerThread;
   private Logger logger;
 
@@ -174,5 +176,16 @@ public class AnnouncerPlugin extends JavaPlugin
   public void setRandom(boolean random) {
     this.random = random;
     saveConfiguration();
+  }
+  
+  public boolean isMotdEnabled()
+  {
+      return this.enabled;
+  }
+  
+  public void setMotdEnabled()
+  {
+      this.enabled = enabled;
+      saveConfiguration();
   }
 }
