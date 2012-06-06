@@ -32,3 +32,8 @@ announcement:
     - 'Use /announce help to get info how to config this plugin.'
     - 'You can also configure this plugin with its config.yml too!'
     
+    motdenabled: false
+    
+    motd:
+    - 'MOTD'
+    
