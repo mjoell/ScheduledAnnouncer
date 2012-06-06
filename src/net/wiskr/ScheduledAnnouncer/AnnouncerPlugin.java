@@ -89,6 +89,7 @@ public class AnnouncerPlugin extends JavaPlugin
     getConfig().set("announcement.messages", this.announcementMessages);
     getConfig().set("announcement.interval", Long.valueOf(this.announcementInterval));
     getConfig().set("announcement.prefix", this.announcementPrefix);
+    getConfig().set("announcement.motd", this.motdMessage);
     getConfig().set("announcement.enabled", Boolean.valueOf(this.enabled));
     getConfig().set("announcement.random", Boolean.valueOf(this.random));
     saveConfig();
@@ -100,6 +101,7 @@ public class AnnouncerPlugin extends JavaPlugin
     this.announcementPrefix = getConfig().getString("announcement.prefix", "&c[Announcement] ");
     this.announcementMessages = getConfig().getStringList("announcement.messages");
     this.announcementInterval = getConfig().getInt("announcement.interval", 1000);
+    this.motdMessage = getConfig().getString("announcement.motd", "");
     this.enabled = getConfig().getBoolean("announcement.enabled", true);
     this.random = getConfig().getBoolean("announcement.random", false);
   }
