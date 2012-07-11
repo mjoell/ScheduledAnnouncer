@@ -17,7 +17,7 @@ commands:
     permission: announcer.command
   an:
     description: Alias for /announce
-    usage: /command help
+    usage: /<command> help
     permission: announcer.command
 
 permissions:
