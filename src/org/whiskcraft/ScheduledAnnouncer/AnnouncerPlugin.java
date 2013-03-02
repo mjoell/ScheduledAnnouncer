@@ -111,7 +111,7 @@ public class AnnouncerPlugin extends JavaPlugin {
         getCommand("announcer").setExecutor(announcerCommandExecutor);
 
         // Logging.
-        logger.info(String.format("%s is enabled!\n", getDescription().getFullName()));
+        logger.info(String.format("%s is enabled!", getDescription().getFullName()));
     }
 
     /**
@@ -119,7 +119,7 @@ public class AnnouncerPlugin extends JavaPlugin {
      */
     public void onDisable() {
         // Logging.
-        logger.info(String.format("%s is disabled!\n", getDescription().getFullName()));
+        logger.info(String.format("%s is disabled!", getDescription().getFullName()));
     }
 
     /**
