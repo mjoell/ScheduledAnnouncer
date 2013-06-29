@@ -1,6 +1,6 @@
 name: ScheduledAnnouncer2
 main: com.proelioservices.ScheduledAnnouncer.AnnouncerPlugin
-version: 2.3.1 - For 1.2.5
+version: 2.7 - For version 1.5.2
 description: Automatically Announce tips and news!
 authors:
  - 'Proeliumm'
