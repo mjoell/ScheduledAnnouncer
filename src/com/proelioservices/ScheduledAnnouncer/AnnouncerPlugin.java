@@ -15,6 +15,7 @@
 package com.proelioservices.ScheduledAnnouncer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -102,6 +103,16 @@ public class AnnouncerPlugin extends JavaPlugin {
 
         // Logging.
         logger.info(String.format("%s is enabled!", getDescription().getFullName()));
+        
+        try 
+        {
+        	Metrics metrics = new Metrics(this);
+        	metrics.start();
+        }
+        catch(IOException e)
+        {
+        	logger.info(String.format("%s was unable to send stats to mcstats.org", getDescription().getFullName()));
+        }
     }
 
     /**
