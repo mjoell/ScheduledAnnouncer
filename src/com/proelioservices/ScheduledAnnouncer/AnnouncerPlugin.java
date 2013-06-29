@@ -106,8 +106,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         
         try 
         {
-        	Metrics metrics = new Metrics(this);
-        	metrics.start();
+        	MetricsLite metricsLite = new MetricsLite(this);
+        	metricsLite.start();
         }
         catch(IOException e)
         {
