@@ -12,7 +12,7 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package org.whiskcraft.ScheduledAnnouncer;
+package com.proelioservices.ScheduledAnnouncer;
 
 import java.io.File;
 import java.util.List;
@@ -29,9 +29,6 @@ import org.bukkit.scheduler.BukkitScheduler;
  * @author MiHo
  */
 public class AnnouncerPlugin extends JavaPlugin {
-	
-	private AUCore core;
-
 
     /**
      * Messages to be announced.
@@ -84,13 +81,6 @@ public class AnnouncerPlugin extends JavaPlugin {
     public void onEnable() {
 
         logger = getServer().getLogger();
-        
-        public void onEnable(){
-        	
-        	core = new AUCore("http://wiskr.net/scheduledannouncer/updates/index.html", log, "[ScheduledAnnouncerAutoUpdater]");
-        }
-
-        
 
         // Create default config if not exist yet.
         if (!new File(getDataFolder(), "config.yml").exists()) {

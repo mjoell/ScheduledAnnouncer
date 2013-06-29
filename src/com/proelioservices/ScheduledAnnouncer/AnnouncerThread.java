@@ -12,7 +12,7 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package org.whiskcraft.ScheduledAnnouncer;
+package com.proelioservices.ScheduledAnnouncer;
 
 import java.util.Random;
 
