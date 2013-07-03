@@ -14,9 +14,9 @@ public class AnnouncerEventListener implements Listener {
 	
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		
-		if(plugin.loginAnnouncementEnabled == true)
+		if(plugin.motdEnabled == true)
 		{
-			if(event.getPlayer().hasPermission(AnnouncerPermissions.MODERATOR))
+			if(event.getPlayer().hasPermission(AnnouncerPermissions.RECEIVER))
 			{
 				plugin.onLoginMessage(event.getPlayer());
 				return;
