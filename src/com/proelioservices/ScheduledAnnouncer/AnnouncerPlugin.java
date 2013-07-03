@@ -324,4 +324,9 @@ public class AnnouncerPlugin extends JavaPlugin {
     	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, loginAnnouncement));
     	player.sendMessage(messageToSend);
     }
+
+    public void setMotdEnabled(boolean motdEnabled) {
+        this.motdEnabled = enabled;
+        saveConfiguration();
+    }
 }
