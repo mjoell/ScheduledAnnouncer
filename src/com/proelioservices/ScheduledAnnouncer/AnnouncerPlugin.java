@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -57,7 +58,17 @@ public class AnnouncerPlugin extends JavaPlugin {
      * Flag if the plugin should output the announcements randomly.
      */
     protected boolean random;
-
+    
+    /**
+     * Flag if the plugin should output the onPlayerLogin announcement.
+     */
+    protected boolean loginAnnouncementEnabled;
+    
+    /**
+     * The onPlayerLogin announcement.
+     */
+    protected String loginAnnouncement;
+    
     /**
      * Thread used to announcing.
      */
@@ -179,6 +190,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         getConfig().set("announcement.prefix", announcementPrefix);
         getConfig().set("announcement.enabled", enabled);
         getConfig().set("announcement.random", random);
+        getConfig().set("announcement.loginAnnouncementEnabled", loginAnnouncementEnabled);
+        getConfig().set("announcement.loginAnnouncement", loginAnnouncement);
         saveConfig();
     }
 
@@ -192,6 +205,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         announcementInterval = getConfig().getInt("announcement.interval", 1000);
         enabled = getConfig().getBoolean("announcement.enabled", true);
         random = getConfig().getBoolean("announcement.random", false);
+        loginAnnouncementEnabled = getConfig().getBoolean("announcement.loginAnnouncementEnabled", false);
+        loginAnnouncement = getConfig().getString("announcement.loginAnnouncement", "");
     }
 
     /**
@@ -302,5 +317,11 @@ public class AnnouncerPlugin extends JavaPlugin {
     public void sayMessage(String messageToSay) {
         String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, messageToSay));
         getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
+    }
+    
+    public void onLoginMessage(Player player)
+    {
+    	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, loginAnnouncement));
+    	player.sendMessage(messageToSend);
     }
 }
