@@ -223,7 +223,7 @@ public class AnnouncerPlugin extends JavaPlugin {
      */
     public void setAnnouncementPrefix(String announcementPrefix) {
         this.announcementPrefix = announcementPrefix;
-        saveConfig();
+        saveConfiguration();
     }
 
     /**
@@ -332,7 +332,7 @@ public class AnnouncerPlugin extends JavaPlugin {
     
     public void setMotd(String motd) {
         this.motd = motd;
-        saveConfig();
+        saveConfiguration();
     }
     
     public String getMotd() {
