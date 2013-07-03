@@ -319,7 +319,7 @@ public class AnnouncerPlugin extends JavaPlugin {
         getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
     }
     
-    public void onLoginMessage(Player player)
+    public void sendMotd(Player player)
     {
     	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, motd));
     	player.sendMessage(messageToSend);

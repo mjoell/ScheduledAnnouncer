@@ -156,6 +156,8 @@ class AnnouncerCommandExecutor implements CommandExecutor {
             sender.sendMessage(ChatColor.GRAY + "/announce list" + ChatColor.WHITE + " - Lists all announcements");
             sender.sendMessage(ChatColor.GRAY + "/announce random [true|false]" + ChatColor.WHITE +
                 " - Enables or disables the random announcing mode.");
+            sender.sendMessage(ChatColor.GRAY + "/announce motdenabled [true|false]" +  ChatColor.WHITE + " - Enables or disables the motd setting.");
+            sender.sendMessage(ChatColor.GRAY + "/announce setmotd [message]" + ChatColor.WHITE + " - Sets the message of the day.");
         }
         if (sender.hasPermission(AnnouncerPermissions.ADMINISTRATOR)) {
             sender.sendMessage(ChatColor.GRAY + "/announce reload" + ChatColor.WHITE + " - Reloads the config.yml");

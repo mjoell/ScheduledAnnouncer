@@ -1,5 +1,6 @@
 package com.proelioservices.ScheduledAnnouncer;
 
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -12,19 +13,26 @@ public class AnnouncerEventListener implements Listener {
 		this.plugin = plugin;
 	}
 	
-	public void onPlayerJoin(PlayerJoinEvent event) {
+	@EventHandler
+	public void onPlayerJoin(final PlayerJoinEvent event) {
 		
-		if(plugin.motdEnabled == true)
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
 		{
-			if(event.getPlayer().hasPermission(AnnouncerPermissions.RECEIVER))
+			public void run()
 			{
-				plugin.onLoginMessage(event.getPlayer());
-				return;
+				if(plugin.motdEnabled == true)
+				{
+					if(event.getPlayer().hasPermission(AnnouncerPermissions.RECEIVER))
+					{
+						plugin.sendMotd(event.getPlayer());
+						return;
+					}
+				}
+				else
+				{
+					return;
+				}
 			}
-		}
-		else
-		{
-			return;
-		}
+		}, 3); 
 	}
 }
