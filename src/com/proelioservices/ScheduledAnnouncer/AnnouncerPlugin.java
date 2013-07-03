@@ -190,8 +190,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         getConfig().set("announcement.prefix", announcementPrefix);
         getConfig().set("announcement.enabled", enabled);
         getConfig().set("announcement.random", random);
-        getConfig().set("announcement.loginAnnouncementEnabled", loginAnnouncementEnabled);
-        getConfig().set("announcement.loginAnnouncement", loginAnnouncement);
+        getConfig().set("announcement.motdEnabled", loginAnnouncementEnabled);
+        getConfig().set("announcement.motd", loginAnnouncement);
         saveConfig();
     }
 
@@ -205,8 +205,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         announcementInterval = getConfig().getInt("announcement.interval", 1000);
         enabled = getConfig().getBoolean("announcement.enabled", true);
         random = getConfig().getBoolean("announcement.random", false);
-        loginAnnouncementEnabled = getConfig().getBoolean("announcement.loginAnnouncementEnabled", false);
-        loginAnnouncement = getConfig().getString("announcement.loginAnnouncement", "");
+        loginAnnouncementEnabled = getConfig().getBoolean("announcement.motdEnabled", false);
+        loginAnnouncement = getConfig().getString("announcement.motd", "");
     }
 
     /**
