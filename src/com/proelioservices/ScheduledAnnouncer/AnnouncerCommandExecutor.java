@@ -79,6 +79,8 @@ class AnnouncerCommandExecutor implements CommandExecutor {
             success = onEnableCommand(sender, command, label, args);
         } else if ("reload".equalsIgnoreCase(args[0])) {
             success = onReloadCommand(sender, command, label, args);
+        } else if ("say".equalsIgnoreCase(args[0])) {
+        	success = onSayCommand(sender, command, label, args);
         } else {
             success = false;
         }
@@ -476,5 +478,35 @@ class AnnouncerCommandExecutor implements CommandExecutor {
         } else {
             return false;
         }
+    }
+    
+    /**
+     * Called when user uses the /announce say command.
+     * 
+     * @param sender	the sender.
+     * @param command	the command sent.
+     * @param label		the label used for the command
+     * @param args		the arguments
+     * @return			true if a valid command, otherwise false
+     */
+    
+    boolean onSayCommand(CommandSender sender, Command command, String label, String[] args)
+    {
+    	if (sender.hasPermission(AnnouncerPermissions.MODERATOR)) {
+    		if (args.length == 1) {
+    			sender.sendMessage(ChatColor.RED + "Include a message to broadcast.");
+    			return true;
+    		}
+    		else if(args.length > 1) {
+                StringBuilder messageToSay = new StringBuilder();
+                for (int index = 1; index < args.length; ++index) {
+                    messageToSay.append(args[index]);
+                    messageToSay.append(" ");
+                }
+    			plugin.sayMessage(messageToSay.toString());
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }
