@@ -287,4 +287,9 @@ public class AnnouncerPlugin extends JavaPlugin {
         this.random = random;
         saveConfiguration();
     }
+    
+    public void sayMessage(String messageToSay) {
+        String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, messageToSay));
+        getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
+    }
 }
