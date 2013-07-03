@@ -32,3 +32,9 @@ announcement:
     - 'Use /announce help to get info how to config this plugin.'
     - 'You can also configure this plugin with its config.yml too!'
     
+    # Use to enable or disable login announcemnts.
+    loginAnnouncementEnabled: true
+    
+    # Use to define the login announcement.
+    loginAnnouncement: 'Test announcement.'
+    
