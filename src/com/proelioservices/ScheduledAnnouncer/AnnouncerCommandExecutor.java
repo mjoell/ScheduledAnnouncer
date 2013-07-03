@@ -81,6 +81,10 @@ class AnnouncerCommandExecutor implements CommandExecutor {
             success = onReloadCommand(sender, command, label, args);
         } else if ("say".equalsIgnoreCase(args[0])) {
         	success = onSayCommand(sender, command, label, args);
+        } else if ("motdenabled".equalsIgnoreCase(args[0])) {
+        	success = onMotdEnabledCommand(sender, command, label, args);
+        } else if ("setmotd".equalsIgnoreCase(args[0])) {
+        	success = onSetMotdCommand(sender, command, label, args);
         } else {
             success = false;
         }
@@ -441,7 +445,7 @@ class AnnouncerCommandExecutor implements CommandExecutor {
                         "Use '/announce help' to view the help.");
                 }
             } else if (args.length == 1) {
-                if (plugin.isRandom()) {
+                if (plugin.isEnabled()) {
                     sender.sendMessage(ChatColor.LIGHT_PURPLE + "Announcer is enabled.");
                 } else {
                     sender.sendMessage(ChatColor.LIGHT_PURPLE + "Announcer is disabled.");
@@ -492,7 +496,7 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     
     boolean onSayCommand(CommandSender sender, Command command, String label, String[] args)
     {
-    	if (sender.hasPermission(AnnouncerPermissions.MODERATOR)) {
+    	if (sender.hasPermission(AnnouncerPermissions.RECEIVER)) {
     		if (args.length == 1) {
     			sender.sendMessage(ChatColor.RED + "Include a message to broadcast.");
     			return true;
@@ -506,6 +510,73 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     			plugin.sayMessage(messageToSay.toString());
     			return true;
     		}
+    	}
+    	return false;
+    }
+    
+    boolean onMotdEnabledCommand(CommandSender sender, Command command, String label, String[] args)
+    {
+    	if(sender.hasPermission(AnnouncerPermissions.MODERATOR))
+    	{
+    		if(args.length == 1)
+    		{
+    			if(plugin.isMotdEnabled())
+    			{
+    				sender.sendMessage(ChatColor.LIGHT_PURPLE + "MOTD is enabled.");
+    			}
+    			else
+    			{
+    				sender.sendMessage(ChatColor.LIGHT_PURPLE + "MOTD is disabled.");
+    			}
+    		}
+    		else if(args.length == 2)
+    		{
+    			if("true".equalsIgnoreCase(args[1]))
+    			{
+    				plugin.setMotdEnabled(true);
+    				sender.sendMessage(ChatColor.GREEN + "MOTD enabled!");
+    			}
+    			else if("false".equalsIgnoreCase(args[1]))
+    			{
+    				plugin.setMotdEnabled(false);
+    				sender.sendMessage(ChatColor.GREEN + "MOTD disabled!");
+    			}
+    			else
+    			{
+    				sender.sendMessage(ChatColor.RED + "Use true or false to enable or disabled! " + "Use '/announce help' to view the help.");
+    			}
+    			
+            } else {
+                sender.sendMessage(
+                    ChatColor.RED + "Invalid number of arguments! Use '/announce help' to view the help.");
+            }
+    		return true;
+    	}
+    	return false;
+    }
+    
+    boolean onSetMotdCommand(CommandSender sender, Command command, String label, String[] args)
+    {
+    	if(sender.hasPermission(AnnouncerPermissions.MODERATOR))
+    	{
+    		if(args.length == 1)
+    		{
+    			sender.sendMessage(ChatColor.LIGHT_PURPLE + "The MOTD is currently set to: " + plugin.motd);
+    		}
+    		else if(args.length > 1) {
+                StringBuilder motdToString = new StringBuilder();
+                for (int index = 1; index < args.length; ++index) {
+                    motdToString.append(args[index]);
+                    motdToString.append(" ");
+                }
+    			plugin.setMotd(motdToString.toString());
+    			sender.sendMessage(ChatColor.GREEN + "MOTD set!");
+    		}
+    		else
+    		{
+    			sender.sendMessage(ChatColor.RED + "Invalid number of arguments!  Use '/announce help' to view the help.");
+    		}
+    		return true;
     	}
     	return false;
     }
