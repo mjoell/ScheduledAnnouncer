@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -65,7 +67,11 @@ public class AnnouncerPlugin extends JavaPlugin {
      * The logger used to output logging information.
      */
     private Logger logger;
-
+    
+    /**
+     * The listener used to register events.
+     */
+    private AnnouncerEventListener listener;
     /**
      * Allocates a new AnnouncerPlugin plugin. Any initialisation code is here. NOTE: Event registration should be done
      * in onEnable not here as all events are unregistered when a plugin is disabled
@@ -95,6 +101,11 @@ public class AnnouncerPlugin extends JavaPlugin {
         BukkitScheduler scheduler = getServer().getScheduler();
         scheduler
             .scheduleSyncRepeatingTask(this, announcerThread, announcementInterval * 20, announcementInterval * 20);
+        
+        // Register the event listener.
+		listener = new AnnouncerEventListener(this);
+		PluginManager pm = Bukkit.getServer().getPluginManager();
+		pm.registerEvents(this.listener, this);
 
         // Register command executor.
         AnnouncerCommandExecutor announcerCommandExecutor = new AnnouncerCommandExecutor(this);
