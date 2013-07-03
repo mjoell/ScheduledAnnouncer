@@ -62,12 +62,12 @@ public class AnnouncerPlugin extends JavaPlugin {
     /**
      * Flag if the plugin should output the onPlayerLogin announcement.
      */
-    protected boolean loginAnnouncementEnabled;
+    protected boolean motdEnabled;
     
     /**
      * The onPlayerLogin announcement.
      */
-    protected String loginAnnouncement;
+    protected String motd;
     
     /**
      * Thread used to announcing.
@@ -190,8 +190,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         getConfig().set("announcement.prefix", announcementPrefix);
         getConfig().set("announcement.enabled", enabled);
         getConfig().set("announcement.random", random);
-        getConfig().set("announcement.motdEnabled", loginAnnouncementEnabled);
-        getConfig().set("announcement.motd", loginAnnouncement);
+        getConfig().set("announcement.motdEnabled", motdEnabled);
+        getConfig().set("announcement.motd", motd);
         saveConfig();
     }
 
@@ -205,8 +205,8 @@ public class AnnouncerPlugin extends JavaPlugin {
         announcementInterval = getConfig().getInt("announcement.interval", 1000);
         enabled = getConfig().getBoolean("announcement.enabled", true);
         random = getConfig().getBoolean("announcement.random", false);
-        loginAnnouncementEnabled = getConfig().getBoolean("announcement.motdEnabled", false);
-        loginAnnouncement = getConfig().getString("announcement.motd", "");
+        motdEnabled = getConfig().getBoolean("announcement.motdEnabled", false);
+        motd = getConfig().getString("announcement.motd", "");
     }
 
     /**
@@ -321,12 +321,26 @@ public class AnnouncerPlugin extends JavaPlugin {
     
     public void onLoginMessage(Player player)
     {
-    	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, loginAnnouncement));
+    	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, motd));
     	player.sendMessage(messageToSend);
     }
 
-    public void setMotdEnabled(boolean motdEnabled) {
+    public void setMotdEnabled(boolean enabled) {
         this.motdEnabled = enabled;
         saveConfiguration();
+    }
+    
+    public void setMotd(String motd) {
+        this.motd = motd;
+        saveConfig();
+    }
+    
+    public String getMotd() {
+    	return motd;
+    }
+    
+    public boolean isMotdEnabled()
+    {
+    	return motdEnabled;
     }
 }
