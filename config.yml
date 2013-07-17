@@ -21,20 +21,20 @@ announcement:
     random: false
 
     # Defines the prefix for the announcement. Use & + hex char for color codes.
-    prefix: '&c[Announcement] '
+    prefix: "&c[Announcement] "
 
     # The time of one interval in seconds.
     interval: 100
 
     # List of messages to announce. You could use color codes by using & + hex chars too.
     messages:
-    - 'This is the first default announcement!'
-    - 'Use /announce help to get info how to config this plugin.'
-    - 'You can also configure this plugin with its config.yml too!'
+    - "This is the first default announcement!"
+    - "Use /announce help to get info how to config this plugin."
+    - "You can also configure this plugin with its config.yml too!"
     
     # Use to enable or disable the motd.
     motdEnabled: true
     
     # Use to define the motd.
-    motd: 'Test announcement.'
+    motd: "Test announcement."
     
