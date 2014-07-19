@@ -499,7 +499,7 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     
     boolean onSayCommand(CommandSender sender, Command command, String label, String[] args)
     {
-    	if (sender.hasPermission(AnnouncerPermissions.RECEIVER)) {
+    	if (sender.hasPermission(AnnouncerPermissions.BROADCAST)) {
     		if (args.length == 1) {
     			sender.sendMessage(ChatColor.RED + "Include a message to broadcast.");
     			return true;
