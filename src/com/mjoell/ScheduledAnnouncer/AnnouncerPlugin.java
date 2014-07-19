@@ -70,6 +70,11 @@ public class AnnouncerPlugin extends JavaPlugin {
     protected String motd;
     
     /**
+     * Flag to show prefix on motd or not
+     */
+    protected boolean motdShowPrefix;
+    
+    /**
      * Thread used to announcing.
      */
     private AnnouncerThread announcerThread;
@@ -192,6 +197,7 @@ public class AnnouncerPlugin extends JavaPlugin {
         getConfig().set("announcement.random", random);
         getConfig().set("announcement.motdEnabled", motdEnabled);
         getConfig().set("announcement.motd", motd);
+        getConfig().set("announcement.motd-show-prefix", motdShowPrefix);
         saveConfig();
     }
 
@@ -321,8 +327,13 @@ public class AnnouncerPlugin extends JavaPlugin {
     
     public void sendMotd(Player player)
     {
-    	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, motd));
-    	player.sendMessage(messageToSend);
+    	if(motdShowPrefix) {
+        	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, motd));
+        	player.sendMessage(messageToSend);
+    	} else {
+        	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", motd));
+        	player.sendMessage(messageToSend);
+    	}
     }
 
     public void setMotdEnabled(boolean enabled) {
