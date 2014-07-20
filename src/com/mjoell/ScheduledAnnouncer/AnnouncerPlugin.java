@@ -180,7 +180,10 @@ public class AnnouncerPlugin extends JavaPlugin {
                 getServer().dispatchCommand(getServer().getConsoleSender(), message.substring(1));
             } else if (getServer().getOnlinePlayers().length > 0) {
                 // Broadcast the message only when somebody is online:
+            	
                 String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, message));
+                messageToSend = messageToSend.replaceAll("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
+                messageToSend = messageToSend.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
                 getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
             }
         }
@@ -301,34 +304,51 @@ public class AnnouncerPlugin extends JavaPlugin {
         saveConfiguration();
     }
 
-
-
+    /**
+     * @return if announcer is enabled or disabled.
+     */
     public boolean isAnnouncerEnabled() {
         return enabled;
     }
 
+    /**
+     * Set whether or not the announcer is enabled.
+     * @param enabled
+     */
     public void setAnnouncerEnabled(boolean enabled) {
         this.enabled = enabled;
         saveConfiguration();
     }
 
+    /**
+     * @return if random is enabled or disabled
+     */
     public boolean isRandom() {
         return random;
     }
-
+    
+    /**
+     * @param random
+     */
     public void setRandom(boolean random) {
         this.random = random;
         saveConfiguration();
     }
     
+    /**
+     * @param messageToSay
+     */
     public void sayMessage(String messageToSay) {
-    	messageToSay = messageToSay.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
-    	messageToSay = messageToSay.replaceAll("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
+    	messageToSay = messageToSay.replace("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
+    	messageToSay = messageToSay.replace("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
     	
         String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, messageToSay));
         getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
     }
     
+    /**
+     * @param player
+     */
     public void sendMotd(Player player)
     {
     	if(this.isMotdPrefixEnabled()) {
@@ -339,31 +359,49 @@ public class AnnouncerPlugin extends JavaPlugin {
         	player.sendMessage(messageToSend);
     	}
     }
-
+    
+    /**
+     * @param enabled
+     */
     public void setMotdEnabled(boolean enabled) {
         this.motdEnabled = enabled;
         saveConfiguration();
     }
     
+    /**
+     * @param enabled
+     */
     public void setMotdPrefixEnabled(boolean enabled) {
     	this.motdPrefixEnabled = enabled;
     	saveConfiguration();
     }
     
+    /**
+     * @param motd
+     */
     public void setMotd(String motd) {
         this.motd = motd;
         saveConfiguration();
     }
     
+    /**
+     * @return the motd
+     */
     public String getMotd() {
     	return motd;
     }
     
+    /**
+     * @return if the motd is enabled or disabled
+     */
     public boolean isMotdEnabled()
     {
     	return motdEnabled;
     }
     
+    /**
+     * @return if the motd prefix is enabled or disabled
+     */
     public boolean isMotdPrefixEnabled() {
     	return motdPrefixEnabled;
     }

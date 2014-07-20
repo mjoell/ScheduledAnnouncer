@@ -13,6 +13,9 @@ public class AnnouncerEventListener implements Listener {
 		this.plugin = plugin;
 	}
 	
+	/**
+	 * @param event		On player join for sendMotd()
+	 */
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent event) {
 		

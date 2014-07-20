@@ -520,6 +520,13 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     	return false;
     }
     
+    /**
+     * @param sender	the sender.
+     * @param command	the command sent.
+     * @param label		the label used for the command
+     * @param args		the arguments
+     * @return			enable or disable the motd, and check setting
+     */
     boolean onMotdEnabledCommand(CommandSender sender, Command command, String label, String[] args)
     {
     	if(sender.hasPermission(AnnouncerPermissions.MODERATOR))
@@ -561,6 +568,13 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     	return false;
     }
     
+    /**
+     * @param sender	the sender.
+     * @param command	the command sent.
+     * @param label		the label used for the command
+     * @param args		the arguments
+     * @return			set the motd
+     */
     boolean onSetMotdCommand(CommandSender sender, Command command, String label, String[] args)
     {
     	if(sender.hasPermission(AnnouncerPermissions.MODERATOR))
@@ -587,6 +601,13 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     	return false;
     }
     
+    /**
+     * @param sender	the sender.
+     * @param command	the command sent.
+     * @param label		the label used for the command
+     * @param args		the arguments
+     * @return			enabled/disable motd prefix and check setting
+     */
     boolean onMotdPrefixEnabledCommand(CommandSender sender, Command command, String label, String[] args) {
     	if(sender.hasPermission(AnnouncerPermissions.MODERATOR)) {
     		if(args.length == 1) {
