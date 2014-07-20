@@ -179,9 +179,21 @@ public class AnnouncerPlugin extends JavaPlugin {
                 // Execute the command, cause it's a command:
                 getServer().dispatchCommand(getServer().getConsoleSender(), message.substring(1));
             } else if (getServer().getOnlinePlayers().length > 0) {
-                // Broadcast the message only when somebody is online:
+            	// Get position of key in array
+            	int pos = -1;
+            	for(int i = 0; i < messages.length; i++) {
+            		if(messages[i] == message) {
+            			pos = i;
+            		}
+            	}
             	
-                String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, message));
+            	String messageToSend = null;
+            	
+            	// If first message, show prefix,
+            	if(pos == 0) messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, message));
+            	// else, don't show the prefix
+            	if(pos != 0) messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s", message));
+            	
                 messageToSend = messageToSend.replaceAll("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
                 messageToSend = messageToSend.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
                 getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
