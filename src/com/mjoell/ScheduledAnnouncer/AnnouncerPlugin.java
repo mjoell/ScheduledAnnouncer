@@ -72,7 +72,7 @@ public class AnnouncerPlugin extends JavaPlugin {
     /**
      * Flag to show prefix on motd or not
      */
-    protected boolean motdShowPrefix;
+    protected boolean motdPrefixEnabled;
     
     /**
      * Thread used to announcing.
@@ -197,7 +197,7 @@ public class AnnouncerPlugin extends JavaPlugin {
         getConfig().set("announcement.random", random);
         getConfig().set("announcement.motdEnabled", motdEnabled);
         getConfig().set("announcement.motd", motd);
-        getConfig().set("announcement.motd-show-prefix", motdShowPrefix);
+        getConfig().set("announcement.motd-show-prefix", motdPrefixEnabled);
         saveConfig();
     }
 
@@ -212,6 +212,7 @@ public class AnnouncerPlugin extends JavaPlugin {
         enabled = getConfig().getBoolean("announcement.enabled", true);
         random = getConfig().getBoolean("announcement.random", false);
         motdEnabled = getConfig().getBoolean("announcement.motdEnabled", false);
+        motdPrefixEnabled = getConfig().getBoolean("announcement.motdPrefixEnabled", false);
         motd = getConfig().getString("announcement.motd", "");
     }
 
@@ -321,17 +322,20 @@ public class AnnouncerPlugin extends JavaPlugin {
     }
     
     public void sayMessage(String messageToSay) {
+    	messageToSay = messageToSay.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
+    	messageToSay = messageToSay.replaceAll("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
+    	
         String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, messageToSay));
         getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
     }
     
     public void sendMotd(Player player)
     {
-    	if(motdShowPrefix) {
+    	if(this.isMotdPrefixEnabled()) {
         	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, motd));
         	player.sendMessage(messageToSend);
     	} else {
-        	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", motd));
+        	String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s", motd));
         	player.sendMessage(messageToSend);
     	}
     }
@@ -339,6 +343,11 @@ public class AnnouncerPlugin extends JavaPlugin {
     public void setMotdEnabled(boolean enabled) {
         this.motdEnabled = enabled;
         saveConfiguration();
+    }
+    
+    public void setMotdPrefixEnabled(boolean enabled) {
+    	this.motdPrefixEnabled = enabled;
+    	saveConfiguration();
     }
     
     public void setMotd(String motd) {
@@ -353,5 +362,9 @@ public class AnnouncerPlugin extends JavaPlugin {
     public boolean isMotdEnabled()
     {
     	return motdEnabled;
+    }
+    
+    public boolean isMotdPrefixEnabled() {
+    	return motdPrefixEnabled;
     }
 }

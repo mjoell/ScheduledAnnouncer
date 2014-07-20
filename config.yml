@@ -38,3 +38,5 @@ announcement:
     # Use to define the motd.
     motd: "Test announcement."
     
+    # Use to enable or disable the MOTD prefix.
+    motd-show-prefix: true

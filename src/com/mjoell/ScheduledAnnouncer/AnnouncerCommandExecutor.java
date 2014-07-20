@@ -85,6 +85,8 @@ class AnnouncerCommandExecutor implements CommandExecutor {
         	success = onMotdEnabledCommand(sender, command, label, args);
         } else if ("setmotd".equalsIgnoreCase(args[0])) {
         	success = onSetMotdCommand(sender, command, label, args);
+        } else if ("motdprefixenabled".equalsIgnoreCase(args[0])) {
+        	success = onMotdPrefixEnabledCommand(sender, command, label, args);
         } else {
             success = false;
         }
@@ -157,6 +159,7 @@ class AnnouncerCommandExecutor implements CommandExecutor {
             sender.sendMessage(ChatColor.GRAY + "/announce random [true|false]" + ChatColor.WHITE +
                 " - Enables or disables the random announcing mode.");
             sender.sendMessage(ChatColor.GRAY + "/announce motdenabled [true|false]" +  ChatColor.WHITE + " - Enables or disables the motd setting.");
+            sender.sendMessage(ChatColor.GRAY + "/announce motdprefixenabled [true|false]" + ChatColor.WHITE + " - Enables or disables the prefix showing in the MOTD.");
             sender.sendMessage(ChatColor.GRAY + "/announce setmotd [message]" + ChatColor.WHITE + " - Sets the message of the day.");
             sender.sendMessage(ChatColor.GRAY + "/announce say [message]" + ChatColor.WHITE + " - Says the message you send.");
         }
@@ -577,6 +580,32 @@ class AnnouncerCommandExecutor implements CommandExecutor {
     		}
     		else
     		{
+    			sender.sendMessage(ChatColor.RED + "Invalid number of arguments!  Use '/announce help' to view the help.");
+    		}
+    		return true;
+    	}
+    	return false;
+    }
+    
+    boolean onMotdPrefixEnabledCommand(CommandSender sender, Command command, String label, String[] args) {
+    	if(sender.hasPermission(AnnouncerPermissions.MODERATOR)) {
+    		if(args.length == 1) {
+    			if(plugin.isMotdPrefixEnabled()) {
+    				sender.sendMessage(ChatColor.LIGHT_PURPLE + "The prefix will show when the MOTD is displayed.");
+    			} else {
+    				sender.sendMessage(ChatColor.LIGHT_PURPLE + "The prefix will not show when the MOTD is displayed.");
+    			}
+    		} else if(args.length == 2) {
+    			if("true".equalsIgnoreCase(args[1])) {
+    				plugin.setMotdPrefixEnabled(true);
+    				sender.sendMessage(ChatColor.GREEN + "MOTD prefix enabled!");
+    			} else if("false".equalsIgnoreCase(args[1])) {
+    				plugin.setMotdPrefixEnabled(false);
+    				sender.sendMessage(ChatColor.GREEN + "MOTD prefix disabled!");
+    			} else {
+    				sender.sendMessage(ChatColor.RED + "Use true or false to enable or disable! " + "Use '/announce help' to view the help.");
+    			}
+    		} else {
     			sender.sendMessage(ChatColor.RED + "Invalid number of arguments!  Use '/announce help' to view the help.");
     		}
     		return true;
