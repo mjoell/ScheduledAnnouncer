@@ -3,7 +3,7 @@ main: com.mjoell.ScheduledAnnouncer.AnnouncerPlugin
 version: 2.8.5 - For version 1.7.9
 description: Automatically Announce tips and news!
 authors:
- - 'Proeliumm'
+ - 'MJoell'
 
 commands:
   announce:
