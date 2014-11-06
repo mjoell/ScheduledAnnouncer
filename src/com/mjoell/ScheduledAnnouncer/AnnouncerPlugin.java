@@ -174,7 +174,7 @@ public class AnnouncerPlugin extends JavaPlugin {
      * @param line the messages to promote.
      */
     public void announce(String line) {
-        String[] messages = line.split("&n");
+        String[] messages = line.split("%n");
         for (String message : messages) {
             if (message.startsWith("/")) {
                 // Execute the command, cause it's a command:
