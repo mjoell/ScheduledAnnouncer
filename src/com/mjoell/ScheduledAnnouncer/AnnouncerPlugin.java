@@ -179,7 +179,7 @@ public class AnnouncerPlugin extends JavaPlugin {
             if (message.startsWith("/")) {
                 // Execute the command, cause it's a command:
                 getServer().dispatchCommand(getServer().getConsoleSender(), message.substring(1));
-            } else if (getServer().getOnlinePlayers().length > 0) {
+            } else if (getServer().getOnlinePlayers().size() > 0) {
             	// Get position of key in array
             	int pos = -1;
             	for(int i = 0; i < messages.length; i++) {
@@ -196,7 +196,7 @@ public class AnnouncerPlugin extends JavaPlugin {
             	if(pos != 0) messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s", message));
             	
                 messageToSend = messageToSend.replaceAll("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
-                messageToSend = messageToSend.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
+                messageToSend = messageToSend.replaceAll("%playerCount%", Integer.toString(getServer().getOnlinePlayers().size()));
                 getServer().broadcast(messageToSend, AnnouncerPermissions.RECEIVER);
             }
         }
@@ -352,7 +352,7 @@ public class AnnouncerPlugin extends JavaPlugin {
      * @param messageToSay
      */
     public void sayMessage(String messageToSay) {
-    	messageToSay = messageToSay.replace("%playerCount%", Integer.toString(getServer().getOnlinePlayers().length));
+    	messageToSay = messageToSay.replace("%playerCount%", Integer.toString(getServer().getOnlinePlayers().size()));
     	messageToSay = messageToSay.replace("%maxCount%", Integer.toString(getServer().getMaxPlayers()));
     	
         String messageToSend = ChatColorHelper.replaceColorCodes(String.format("%s%s", announcementPrefix, messageToSay));
