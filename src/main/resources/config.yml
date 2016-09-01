@@ -31,7 +31,7 @@ announcement:
     - "This is the first default announcement!"
     - "Use /announce help to get info how to config this plugin."
     - "You can also configure this plugin with its config.yml too!"
-    - "Show current and max player count!  There are currently %currentPlayers%/%maxPlayers% playing right now!
+    - "Show current and max player count!  There are currently %currentPlayers%/%maxPlayers% playing right now!"
     
     # Use to enable or disable the motd.
     motdEnabled: true
